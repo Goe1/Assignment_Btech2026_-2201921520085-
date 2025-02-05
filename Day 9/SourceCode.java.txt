@@ -1,0 +1,17 @@
+class MyCalendar {
+    TreeMap<Integer, Integer> calcy;
+    public MyCalendar() {
+        calcy = new TreeMap();
+    }
+    
+    public boolean book(int startTime, int endTime) {
+       Integer prevBook = calcy.floorKey(startTime);
+    Integer nextBook = calcy.ceilingKey(startTime);
+    if((prevBook==null || calcy.get(prevBook)<=startTime) && (nextBook==null || endTime<=nextBook)) 
+    { 
+    calcy.put(startTime, endTime);
+    return true;
+    }
+    return false; 
+    }
+}
