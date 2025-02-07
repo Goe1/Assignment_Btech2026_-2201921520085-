@@ -1,0 +1,23 @@
+class MyCalendarTwo {
+    List<int[]> track;
+    List<int[]> doubleBook;
+    public MyCalendarTwo() {
+        track = new ArrayList<>();
+        doubleBook = new ArrayList<>();
+    }
+    
+    public boolean book(int startTime, int endTime) {
+        for (int[] event : doubleBook) {
+            if (Math.max(startTime, event[0]) < Math.min(endTime, event[1])) {
+                return false; 
+            }
+        }
+        for (int[] event : track) {
+            if (Math.max(startTime, event[0]) < Math.min(endTime, event[1])) {
+                doubleBook.add(new int[]{Math.max(startTime, event[0]), Math.min(endTime, event[1])});
+            }
+        }
+        track.add(new int[]{startTime, endTime});
+        return true;
+    }
+}
